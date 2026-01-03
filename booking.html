@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notification</title>
+</head>
+<body>
+    <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('0a94aa9533ac99cc934a', {
+      cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('my-custom-notification');
+    channel.bind('my-ticket-booking-event', function(data) {
+        console.log(data)
+     // alert(JSON.stringify(data));
+     alert(data.message);
+    });
+  </script>
+</body>
+</html>
